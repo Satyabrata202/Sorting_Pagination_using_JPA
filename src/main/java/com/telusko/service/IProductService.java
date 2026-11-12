@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.telusko.entity.Product;
 
-public interface IProductService 
+public interface IProductService
 {
 	Iterable<Product> fetchProductInfoSorting(boolean status, String ...properties);
 
-	Iterable<Product> fetchProductByPagination();
+	Iterable<Product> fetchProductByPagination(int pgNo,int pgSize,boolean status,String ...properties);
 
 }
