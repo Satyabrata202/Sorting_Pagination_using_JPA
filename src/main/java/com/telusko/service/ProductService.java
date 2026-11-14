@@ -2,11 +2,9 @@ package com.telusko.service;
 
 
 
-import org.hibernate.boot.model.source.spi.Sortable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +31,28 @@ public class ProductService implements IProductService {
 		Page<Product> page = repo.findAll(pageable);
 
 		return page.getContent();
+	}
+
+	@Override
+	public void fetchProductByPagination(int pgSize) {
+
+		long count = 6l;
+		long pagecount = count/pgSize;
+
+		pagecount = count % pgSize == 0 ? pagecount : ++pagecount;
+
+		for(int i=0; i < pagecount; i++){
+
+			PageRequest pageable = PageRequest.of(i,pgSize);
+			Page<Product> page = repo.findAll(pageable);
+
+			page.getContent().forEach(p-> System.out.println(p));
+
+			System.out.println("******************");
+		}
+
+
+
 	}
 
 

@@ -18,8 +18,7 @@ public class Datajpa1crudApplication {
 		ConfigurableApplicationContext container = SpringApplication.run(Datajpa1crudApplication.class, args);
 	IProductService service = container.getBean(IProductService.class);
 
-		service.fetchProductByPagination(1,3,false,"price")
-				.forEach(product -> System.out.println(product));
+		service.fetchProductByPagination(4);
 
 	}
 
